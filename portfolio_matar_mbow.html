@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Portfolio | Matar Mbow - Responsable Pédagogique CTS</title>
+        <style>
+            :root {
+                --primary: #003366;
+                --secondary: #d4af37;
+                --dark: #1a1a1a;
+                --light: #f4f4f4;
+                --accent: #00a8cc;
+                --white: #ffffff;
+                --transition: all 0.3s ease;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                scroll-behavior: smooth;
+            }
+
+            body {
+                background-color: var(--light);
+                color: var(--dark);
+                line-height: 1.6;
+            }
+
+            /* --- Navigation --- */
+            nav {
+                background: var(--primary);
+                color: white;
+                padding: 1rem 5%;
+                position: fixed;
+                width: 100%;
+                top: 0;
+                z-index: 1000;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-logo {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .nav-logo img {
+                height: 40px;
+                filter: brightness(0) invert(1);
+            }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+                gap: 20px;
+            }
+
+            nav ul li a {
+                color: white;
+                text-decoration: none;
+                font-weight: 500;
+                transition: var(--transition);
+                font-size: 0.85rem;
+                text-transform: uppercase;
+            }
+
+            nav ul li a:hover {
+                color: var(--secondary);
+            }
+
+            /* --- Hero Section --- */
+            .hero {
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                padding: 0 10%;
+                background: linear-gradient(135deg, var(--primary) 0%, #001529 100%);
+                color: white;
+            }
+
+            .hero-content {
+                max-width: 600px;
+            }
+
+            .hero-content h1 {
+                font-size: clamp(2.5rem, 5vw, 3.5rem);
+                margin-bottom: 0.5rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1.5rem;
+                color: var(--secondary);
+                font-weight: bold;
+                margin-bottom: 20px;
+                display: block;
+            }
+
+            .hero-image img {
+                width: 280px;
+                height: 350px;
+                object-fit: cover;
+                border-radius: 20px;
+                border: 5px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            }
+
+            /* --- Sections Communes --- */
+            section {
+                padding: 100px 10% 60px;
+            }
+
+            .section-title {
+                text-align: center;
+                font-size: 2.2rem;
+                color: var(--primary);
+                margin-bottom: 3rem;
+            }
+
+            .section-title::after {
+                content: '';
+                display: block;
+                width: 60px;
+                height: 4px;
+                background: var(--secondary);
+                margin: 10px auto;
+            }
+
+            /* --- Grid & Cards --- */
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 25px;
+            }
+
+            .card {
+                background: var(--white);
+                padding: 30px;
+                border-radius: 15px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                transition: var(--transition);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                min-height: 350px;
+            }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            }
+
+            /* --- Boutons Projets --- */
+            .project-links {
+                display: flex;
+                gap: 10px;
+                margin-top: 20px;
+                flex-wrap: wrap;
+            }
+
+            .btn-git,
+            .btn-proto,
+            .btn-link {
+                padding: 8px 15px;
+                border-radius: 5px;
+                text-decoration: none;
+                font-size: 0.85rem;
+                font-weight: bold;
+                transition: var(--transition);
+                text-align: center;
+                flex: 1;
+            }
+
+            .btn-git {
+                background-color: var(--dark);
+                color: var(--white);
+                border: 1px solid var(--dark);
+            }
+
+            .btn-proto {
+                background-color: var(--secondary);
+                color: var(--primary);
+                border: 1px solid var(--secondary);
+            }
+
+            .btn-link {
+                background-color: var(--accent);
+                color: white;
+                border: 1px solid var(--accent);
+            }
+
+            .btn-git:hover,
+            .btn-proto:hover,
+            .btn-link:hover {
+                opacity: 0.8;
+            }
+
+            .project-tag {
+                background: var(--accent);
+                color: white;
+                font-size: 0.7rem;
+                padding: 3px 10px;
+                border-radius: 20px;
+                text-transform: uppercase;
+                font-weight: bold;
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+
+            .tech-stack {
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin: 15px 0;
+            }
+
+            .tech-stack li {
+                background: #e0e0e0;
+                padding: 2px 8px;
+                font-size: 0.8rem;
+                border-radius: 4px;
+                color: var(--primary);
+            }
+
+            /* --- Timeline --- */
+            .timeline {
+                max-width: 800px;
+                margin: auto;
+                border-left: 3px solid var(--primary);
+                padding-left: 30px;
+                position: relative;
+            }
+
+            .timeline-item {
+                position: relative;
+                margin-bottom: 40px;
+            }
+
+            .timeline-item::before {
+                content: '';
+                position: absolute;
+                left: -39px;
+                top: 5px;
+                width: 15px;
+                height: 15px;
+                background: var(--secondary);
+                border-radius: 50%;
+                border: 3px solid var(--white);
+            }
+
+            /* --- CTS Program --- */
+            .program-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: 15px;
+            }
+
+            .program-item {
+                background: var(--primary);
+                color: white;
+                padding: 15px;
+                border-radius: 8px;
+                border-left: 4px solid var(--secondary);
+                transition: var(--transition);
+                text-align: center;
+            }
+
+            .program-item:hover {
+                background: var(--accent);
+            }
+
+            footer {
+                background: var(--dark);
+                color: white;
+                text-align: center;
+                padding: 40px 10%;
+            }
+
+            @media (max-width: 768px) {
+                nav ul {
+                    display: none;
+                }
+
+                .hero {
+                    flex-direction: column-reverse;
+                    text-align: center;
+                    padding-top: 120px;
+                    height: auto;
+                    padding-bottom: 50px;
+                }
+
+                .hero-image img {
+                    width: 200px;
+                    height: 200px;
+                    border-radius: 50%;
+                    margin-bottom: 30px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <nav>
+            <div class="nav-logo">
+                <img src="logo_uadb.png" alt="UADB">
+                <span style="font-weight: bold; letter-spacing: 1px;">MATAR MBOW</span>
+            </div>
+            <ul>
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#skills">Compétences</a></li>
+                <li><a href="#parcours">Parcours</a></li>
+                <li><a href="#cts">Programme</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <section id="accueil" class="hero">
+            <div class="hero-content">
+                <h1>Matar Mbow</h1>
+                <span class="subtitle">L'Excellence par la Pratique</span>
+                <p>Étudiant en Licence 3 Systèmes, Réseaux et Télécommunications à l'UADB, passionné par la
+                    cybersécurité et candidat au poste de <strong>Responsable Pédagogique du Cyber Tech Squad
+                        (CTS)</strong>.</p>
+                <a href="#cts" class="btn-proto"
+                    style="display: inline-block; margin-top: 25px; padding: 12px 25px;">DÉCOUVRIR MON PROGRAMME</a>
+            </div>
+            <div class="hero-image">
+                <img src="maphoto.jpeg" alt="Matar Mbow">
+            </div>
+        </section>
+
+        <section id="projets">
+            <h2 class="section-title">Mes Réalisations</h2>
+            <div class="grid">
+                <!-- Projet 1 -->
+                <div class="card">
+                    <div class="project-info">
+                        <span class="project-tag">Civic-Tech</span>
+                        <h3>XALAT-ci</h3>
+                        <p>Application de participation citoyenne pour les différentes communes du Sénégal.</p>
+                        <p>Signalement d'incidents et proximité avec les autorités (Police, Mairies, Ministères).</p>
+                        <ul class="tech-stack">
+                            <li>HTML/CSS</li>
+                            <li>PHP</li>
+                            <li>SQL</li>
+                            <li>Chatbot (Senbox)</li>
+                            <li>IA pour le traitement et la classification des signalements</li>
+                        </ul>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn-git">GitHub</a>
+                        <a href="https://todo-liste.alwaysdata.net/public/user/dashboard.php" target="_blank"
+                            class="btn-proto">Prototype</a>
+                    </div>
+                </div>
+
+                <!-- Projet Administration -->
+                <div class="card">
+                    <div class="project-info">
+                        <span class="project-tag">Administration Windows Server</span>
+                        <h3>Administration Systèmes</h3>
+                        <p>Travail en groupe sous l'instruction du Dr. Gaye. Automatisation et gestion d'infrastructure.
+                        </p>
+                        <ul class="tech-stack">
+                            <li>AD DS</li>
+                            <li>Replication</li>
+                            <li>SERVEURS DHCP,DNS</li>
+                            <li>Gestion des utlisateurs et groupes</li>
+                            <li>Planification des tâches</li>
+                            <li>Gestion des sauvegardes</li>
+                            <li>gestion des quotas</li>
+                            <li>SAUVEGARDE</li>
+                        </ul>
+                    </div>
+                    <div class="project-links">
+                        <a href="fichiers/script_admin_windows.zip" class="btn-proto" download>Télécharger le pack</a>
+                    </div>
+                </div>
+
+                <!-- Projet E-Civil -->
+                <div class="card">
+                    <div class="project-info">
+                        <span class="project-tag">Digitalisation</span>
+                        <h3>E-Civil Tivaouane</h3>
+                        <p>Automatisation des demandes d'actes d'état civil. Projet finalisé à plus de 80%.</p>
+                        <ul class="tech-stack">
+                            <li>PHP</li>
+                            <li>Base de données</li>
+                            <li>Gestion Municipale</li>
+                        </ul>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn-git">GitHub</a>
+                        <a href="https://todo-liste.alwaysdata.net/login.php" target="_blank"
+                            class="btn-proto">Prototype</a>
+                    </div>
+                </div>
+
+                <!-- Architecture GNS3 -->
+                <div class="card">
+                    <div class="project-info">
+                        <span class="project-tag">Networking</span>
+                        <h3>Architecture GNS3 & Simulation sur Cisco</h3>
+                        <p>Simulation réseau complexe avec routage dynamique OSPF et RIPv2.</p>
+                        <ul class="tech-stack">
+                            <li>GNS3</li>
+                            <li>Cisco</li>
+                            <li>OSPF / RIPv2</li>
+                        </ul>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn-link">Rapport PDF</a>
+                        <a href="https://drive.google.com/drive/folders/1MgG8HDZ7ZNQkMbY86ynECej3EncCqED7?usp=drive_link" target="_blank"
+                            class="btn-proto">Drive</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" style="background: #fff;">
+            <h2 class="section-title">Compétences</h2>
+            <div class="grid">
+                <div class="card" style="min-height: auto;">
+                    <h3 style="color: #c0392b; margin-bottom: 15px;">🛠️ Hard Skills</h3>
+                    <p><strong>Réseaux :</strong> Modèles OSI/TCP-IP, Subnetting, OSPF, Wireshark, Services (DNS, DHCP,
+                        SSH).</p>
+                    <p><strong>Systèmes :</strong> Administration Linux (cron, systemd) et Windows Server (AD DS,
+                        Réplication).</p>
+                    <p><strong>Développement :</strong> HTML, CSS, PHP, Java, SQL.</p>
+                </div>
+                <div class="card" style="min-height: auto;">
+                    <h3 style="color: #27ae60; margin-bottom: 15px;">🤝 Soft Skills</h3>
+                    <ul style="list-style: none;">
+                        <li>🚀 Leadership & Pédagogie</li>
+                        <li>🎤 Communication & Pitching</li>
+                        <li>🔍 Curiosité Technique</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="parcours">
+            <h2 class="section-title">Mon Parcours</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Licence 1 & 2 (UADB)</h4>
+                    <p>Bases de l'informatique et réseaux, premier engagement au sein du CTS.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Licence 3 (Actuel)</h4>
+                    <p>Spécialisation en Systèmes Réseaux, focus Cybersécurité et Leadership.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="cts">
+            <h2 class="section-title">Programme CTS</h2>
+            <div class="program-grid">
+                <div class="program-item">Sécurité MAC Spoofing</div>
+                <div class="program-item">OSINT & IA</div>
+                <div class="program-item">Audit Web (XSS/SQLi)</div>
+                <div class="program-item">CTF Lab & Labo Réseau</div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Me Contacter</h2>
+            <div class="grid" style="grid-template-columns: 1fr;">
+                <div class="card" style="text-align: center; min-height: auto;">
+                    <div class="project-links" style="justify-content: center;">
+                        <a href="https://wa.me/221787575341" target="_blank" class="btn-proto"
+                            style="background:#25D366; color:white; border:none;">WhatsApp</a>
+                        <a href="https://www.linkedin.com/in/matar-mbow-a35679327" target="_blank"
+                            class="btn-git">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p><strong>MATAR MBOW</strong> — CANDIDAT RESPONSABLE PÉDAGOGIQUE CTS</p>
+            <p style="font-size: 0.8rem; margin-top: 10px; color: #aaa;">© 2026 Université Alioune Diop de Bambey</p>
+        </footer>
+
+    </body>
+
+</html>
